@@ -60,6 +60,10 @@ class ProgressChartsAnalyzer
       end unless isFirst
       isFirst = false
 
+      open_lists.each do |list|
+        list["points"] = 0
+      end
+
       next if cad[date].nil?
       cad[date].sort_by {|c| c["date"].to_datetime}.each do |action|
         data = action["data"]
@@ -68,29 +72,6 @@ class ProgressChartsAnalyzer
 
         ap data
         ap open_lists
-
-        total_points = 0
-        open_lists.each do |list|
-          list["points"] = 0
-          data["card"].each do |card|
-            total_points += data["card"]["points"]
-          end
-        end
-
-        puts "total_points"
-        
-        puts total_points
-
-        #puts "data[list]"
-        #ap data["list"]
-
-        #puts "data[list][card]"
-
-        #ap data["list"]["card"]
-
-        #puts "data[list][card][points]"
-
-        #puts data["list"]["card"]["points"]
 
 
         if action["type"] == "updateCard" && !data["listAfter"].nil? && !data["listBefore"].nil?
@@ -115,20 +96,19 @@ class ProgressChartsAnalyzer
         next if matching_list.nil?
         next if cfd[date][matching_list["name"]].include? action["data"]["card"]["id"]
         cfd[date][matching_list["name"]] << action["data"]["card"]["id"]
+        open_lists[matching_list["name"]]["points"] += ["data"]["card"]["points"]
       end
-
-      puts "dailycount (after full day loop): "
 
     end
 
-    ap cfd
+
 
     puts "CFD Each godforsaken comprehension: "
     cfd.each {|k,v| v.each {|l,c| cfd[k][l] = c.count}}
     # cfd.each {|k,v| v.each {|l,c| cfd[k][l] = c.count}}
     # c[i]["pointvalue"]
 
-
+    ap open_lists
 
     cfd
   end
