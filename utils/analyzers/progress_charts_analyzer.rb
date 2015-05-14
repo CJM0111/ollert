@@ -104,6 +104,7 @@ class ProgressChartsAnalyzer
       #cfd[date][matching_list['name']]["dailycount"] << dailycount
       puts "Final calculated dailycount"
       puts dailycount
+      $global_count = dailycount
     end
     cfd.each {|k,v| v.each {|l,c| cfd[k][l] = l["dailycount"]}}
 
@@ -134,13 +135,12 @@ class ProgressChartsAnalyzer
     inList_array = Array.new
     outList_array = Array.new
     dates.each do |date|
-      inCount = 0
+      inCount = $global_count
       outCount = 0
 
 
       inScopeLists.each do |list|
-        inCount += cfd[date][list["name"]]
-
+        #inCount += cfd[date][list["name"]]
 
       end
       inList_array << [date.strftime('%s000').to_i, inCount]
