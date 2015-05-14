@@ -68,6 +68,14 @@ class ProgressChartsAnalyzer
 
         ap data
 
+        puts "data[list]"
+        ap data["list"]
+
+        puts "data[list][card][points]"
+
+        puts data[list][card][points]
+
+
         if action["type"] == "updateCard" && !data["listAfter"].nil? && !data["listBefore"].nil?
           list = data["listAfter"]
 
