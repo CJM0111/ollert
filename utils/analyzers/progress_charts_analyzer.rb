@@ -106,6 +106,9 @@ class ProgressChartsAnalyzer
 
     puts "CFD"
     puts cfd
+
+    puts "lists"
+    puts lists
     cfd_values = Array.new
     lists.each do |list|
       list_array = Array.new
