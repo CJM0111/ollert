@@ -106,7 +106,8 @@ class ProgressChartsAnalyzer
       puts "Final calculated dailycount"
       puts $dailycount
     end
-    cfd.each {|k,v| v.each {|l,c| cfd[k][l] = c.count}}
+    puts "CFD each"
+    puts cfd.each {|k,v| v.each {|l,c| cfd[k][l] = c.count}}
 
     cfd
   end
