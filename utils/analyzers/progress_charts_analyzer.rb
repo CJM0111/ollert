@@ -100,7 +100,7 @@ class ProgressChartsAnalyzer
       cfddata: cfd_values
     }
   end
-
+### TESTING VC
   def self.formatBurnUp(cfd, inScopeLists, outOfScopeLists)
     dates = cfd.keys.sort
     cfd_values = Array.new
