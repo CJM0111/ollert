@@ -73,15 +73,15 @@ class ProgressChartsAnalyzer
         ap data
         ap open_lists
 
-        list_points = 0
-        data["card"].each do |card|
-          open_lists.each do |list|
-            if data["list"]["name"] == list["name"]
-              list_points += data["card"]["points"]
-              list["points"] = list_points
-            end
-          end
-        end
+        # list_points = 0
+        # data["card"].each do |card|
+        #   open_lists.each do |list|
+        #     if data["list"]["name"] == list["name"]
+        #       list_points += data["card"]["points"]
+        #       list["points"] = list_points
+        #     end
+        #   end
+        # end
 
         puts "list_points"
 
@@ -113,7 +113,7 @@ class ProgressChartsAnalyzer
         next if matching_list.nil?
         next if cfd[date][matching_list["name"]].include? action["data"]["card"]["id"]
         cfd[date][matching_list["name"]] << action["data"]["card"]["id"]
-        open_lists[matching_list["name"]]["points"] += ["data"]["card"]["points"]
+        open_lists[matching_list["name"]]["points"] += action["data"]["card"]["points"]
       end
 
     end
