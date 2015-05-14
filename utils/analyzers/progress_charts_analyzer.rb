@@ -113,7 +113,8 @@ class ProgressChartsAnalyzer
 
       inScopeLists.each do |list|
         inCount += cfd[date][list["name"]]
-        print "THIS IS THE TEST OF CFD: " + cfd
+        puts "THIS IS THE TEST OF CFD: "
+        puts cfd
         #logger.info {"cfd[#{date}][#{list}['name'] = #{cfd[date][list['name']]}"}
       end
       inList_array << [date.strftime('%s000').to_i, inCount]
