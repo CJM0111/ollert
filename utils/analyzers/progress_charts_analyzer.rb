@@ -65,6 +65,9 @@ class ProgressChartsAnalyzer
 
         puts $parsed_data
 
+        puts "one element"
+        puts $parsed_data[0]
+
         puts "parsed_data type"
         puts $parsed_data.class
         puts "data type"
