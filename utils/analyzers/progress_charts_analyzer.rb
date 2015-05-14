@@ -17,18 +17,6 @@ class ProgressChartsAnalyzer
 
     cfdData = parse(data, lists)
 
-    #puts "PARSED DATA"
-    #puts cfdData
-
-    test_data = action["data"]["card"]
-
-    puts "action[data][card]"
-    ap test_data
-
-    puts "action['data']"
-    ap action["data"]
-
-
     cfdData.reject do |date|
       index = lists.index{ |l| cfdData[date]["name"] == l["name"]}
       !index.nil? && index >= startingListIndex && index < endingListIndex
@@ -46,11 +34,6 @@ class ProgressChartsAnalyzer
     card_actions = data["actions"].reject {|action| action["type"] == "updateList"}
     list_actions = data["actions"].select {|action| action["type"] == "updateList"}
 
-    # puts "card_actions"
-    # ap card_actions
-
-    # puts "json parsing"
-    # ap data["actions"]["data"]["cards"]["names"]
 
     # open lists
     lists = data["lists"].select { |x| !x["closed"]}
@@ -80,6 +63,12 @@ class ProgressChartsAnalyzer
       cad[date].sort_by {|c| c["date"].to_datetime}.each do |action|
         data = action["data"]
 
+        puts "card name 1"
+        puts data["card"]["name"]
+
+        test_data = data["card"]["name"]
+        puts "card name 2"
+        puts test_data
 
         if action["type"] == "updateCard" && !data["listAfter"].nil? && !data["listBefore"].nil?
           list = data["listAfter"]
