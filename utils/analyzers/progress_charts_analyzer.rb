@@ -110,10 +110,11 @@ class ProgressChartsAnalyzer
         end
 
         matching_list = open_lists.select {|l| l["id"] == list["id"]}.first
+        matching_index = open_lists.find_index{|l| l["id"] == list["id"]}
         next if matching_list.nil?
         next if cfd[date][matching_list["name"]].include? action["data"]["card"]["id"]
         cfd[date][matching_list["name"]] << action["data"]["card"]["id"]
-        open_lists[matching_list]["points"] += action["data"]["card"]["points"]
+        open_lists[matching_index]["points"] += action["data"]["card"]["points"]
 
       end
 
