@@ -12,13 +12,13 @@ class ProgressChartsAnalyzer
     puts "DATA!!!!"
     puts data
 
-    puts "CARD TITLE"
-    puts data.actions.card.name
-
     startingListIndex = lists.index{ |l| startingList == l["id"]} || 0
     endingListIndex = lists.index{ |l| endingList == l["id"]} || lists.count - 1
 
     cfdData = parse(data, lists)
+
+    puts "PARSED DATA"
+    puts cfdData
 
     cfdData.reject do |date|
       index = lists.index{ |l| cfdData[date]["name"] == l["name"]}
