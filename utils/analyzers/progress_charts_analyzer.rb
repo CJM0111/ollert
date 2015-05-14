@@ -67,9 +67,9 @@ class ProgressChartsAnalyzer
         puts data["card"]["name"]
         puts data["card"]
 
-        parsed_data = data["card"]["name"].scan(/\d/)
+        $parsed_data = data["card"]["name"].scan(/\d/)
 
-        puts parsed_data
+        puts $parsed_data
         
         if action["type"] == "updateCard" && !data["listAfter"].nil? && !data["listBefore"].nil?
           list = data["listAfter"]
@@ -128,7 +128,8 @@ class ProgressChartsAnalyzer
       outCount = 0
 
       inScopeLists.each do |list|
-        inCount += cfd[date][list["name"]]
+        #inCount += cfd[date][list["name"]]
+        inCount += $parsed_data
         puts "cfd[date][list['name']]"
         puts cfd[date][list["name"]]
         puts cfd[date]
