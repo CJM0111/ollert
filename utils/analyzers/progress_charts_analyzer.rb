@@ -1,5 +1,6 @@
 require 'date'
 require 'mongoid'
+require 'awesome_print'
 
 class ProgressChartsAnalyzer
   def self.analyze(data, startingList, endingList)
@@ -80,6 +81,8 @@ class ProgressChartsAnalyzer
       end
     end
 
+    puts "CFD Each godforsaken comprehension: "
+    ap cfd.each {|k,v| v.each {|l,c| cfd[k][l] = c.count}}
     cfd.each {|k,v| v.each {|l,c| cfd[k][l] = c.count}}
 
     cfd
