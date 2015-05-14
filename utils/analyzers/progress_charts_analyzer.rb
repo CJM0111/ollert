@@ -98,7 +98,7 @@ class ProgressChartsAnalyzer
         dailycount += Integer(parsed_data[0])
 
       end
-      cfd[date][matching_list['name']]["dailycount"] << dailycount
+      #cfd[date][matching_list['name']]["dailycount"] << dailycount
       puts "Final calculated dailycount"
       puts dailycount
     end
