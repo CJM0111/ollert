@@ -100,7 +100,7 @@ class ProgressChartsAnalyzer
       cfddata: cfd_values
     }
   end
-### TESTING VC
+
   def self.formatBurnUp(cfd, inScopeLists, outOfScopeLists)
     dates = cfd.keys.sort
     cfd_values = Array.new
@@ -113,7 +113,8 @@ class ProgressChartsAnalyzer
 
       inScopeLists.each do |list|
         inCount += cfd[date][list["name"]]
-        logger.info {"cfd[#{date}][#{list}['name'] = #{cfd[date][list['name']]}"}
+        print cfd
+        #logger.info {"cfd[#{date}][#{list}['name'] = #{cfd[date][list['name']]}"}
       end
       inList_array << [date.strftime('%s000').to_i, inCount]
 
