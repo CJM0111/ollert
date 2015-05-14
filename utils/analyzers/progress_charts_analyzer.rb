@@ -37,6 +37,13 @@ class ProgressChartsAnalyzer
     build(card_actions, lists)
   end
 
+
+  # Date => {
+  # "List" => "Cardcount"
+  # }
+
+
+
   def self.build(card_actions, open_lists)
     now = Time.now
     cfd = Hash.new do |h, k|
@@ -88,7 +95,6 @@ class ProgressChartsAnalyzer
     end
 
     puts "CFD Each godforsaken comprehension: "
-    ap cfd.each {|k,v| v.each {|l,c| cfd[k][l] = c.count}}
     cfd.each {|k,v| v.each {|l,c| cfd[k][l] = c.count}}
 
     cfd
