@@ -69,6 +69,10 @@ class ProgressChartsAnalyzer
         ap data
         ap open_lists
 
+        open_lists.each do |list|
+          list["points"] = 0
+        end
+
         #puts "data[list]"
         #ap data["list"]
 
