@@ -66,6 +66,9 @@ class ProgressChartsAnalyzer
 
     isFirst = true
     cad = card_actions.group_by {|ca| ca["date"].to_date}
+    puts "CARD ACTIONS GROUPED BY DATE"
+    puts cad
+    
     return cfd if cad.empty?
     cad.keys.min.upto(Date.today).each do |date|
       cfd[date-1].each do |k,v|
