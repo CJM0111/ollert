@@ -67,6 +67,10 @@ class ProgressChartsAnalyzer
         puts data["card"]["name"]
         puts data["card"]
 
+        parsed_data = data["card"]["name"].scan(/\d/)
+
+        puts parsed_data
+        
         if action["type"] == "updateCard" && !data["listAfter"].nil? && !data["listBefore"].nil?
           list = data["listAfter"]
 
