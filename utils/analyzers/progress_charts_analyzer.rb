@@ -17,9 +17,6 @@ class ProgressChartsAnalyzer
 
     cfdData = parse(data, lists)
 
-    puts "cfdData"
-    ap cfdData
-
     cfdData.reject do |date|
       index = lists.index{ |l| cfdData[date]["name"] == l["name"]}
       !index.nil? && index >= startingListIndex && index < endingListIndex
@@ -68,7 +65,8 @@ class ProgressChartsAnalyzer
 
         puts $parsed_data
 
-        $test_global += $parsed_data
+        parsed_data_int = Integer($parsed_data)
+        $test_global += parsed_data_int
         
         if action["type"] == "updateCard" && !data["listAfter"].nil? && !data["listBefore"].nil?
           list = data["listAfter"]
