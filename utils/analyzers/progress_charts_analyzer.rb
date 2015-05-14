@@ -103,6 +103,9 @@ class ProgressChartsAnalyzer
 
   def self.formatCFD(cfd, lists)
     dates = cfd.keys.sort
+
+    puts "CFD"
+    puts cfd
     cfd_values = Array.new
     lists.each do |list|
       list_array = Array.new
