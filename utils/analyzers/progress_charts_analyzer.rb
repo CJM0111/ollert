@@ -71,7 +71,7 @@ class ProgressChartsAnalyzer
         data["card"]["points"] = Integer(pointvalue[0])
 
         ap data
-        ap open_lists
+        #ap open_lists
 
         # list_points = 0
         # data["card"].each do |card|
@@ -83,12 +83,12 @@ class ProgressChartsAnalyzer
         #   end
         # end
 
-        puts "list_points"
+        #puts "list_points"
 
-        puts list_points
+        # puts list_points
 
-        puts "COMEON LISTS"
-        ap open_lists
+        #puts "COMEON LISTS"
+        #ap open_lists
 
 
         if action["type"] == "updateCard" && !data["listAfter"].nil? && !data["listBefore"].nil?
