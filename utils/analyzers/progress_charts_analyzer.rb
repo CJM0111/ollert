@@ -131,6 +131,7 @@ class ProgressChartsAnalyzer
         inCount += cfd[date][list["name"]]
         puts "cfd[date][list['name']]"
         puts cfd[date][list["name"]]
+        puts cfd[date]
         # inCount += 1
 
       end
