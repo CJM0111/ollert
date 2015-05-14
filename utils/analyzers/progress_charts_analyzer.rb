@@ -57,16 +57,13 @@ class ProgressChartsAnalyzer
       end unless isFirst
       isFirst = false
       dailycount = 0
-      
+
       next if cad[date].nil?
       cad[date].sort_by {|c| c["date"].to_datetime}.each do |action|
         data = action["data"]
 
         parsed_data = data["card"]["name"].scan(/\d/)
-        puts "parsed_data"
         puts parsed_data
-        puts "raw data"
-        puts data["card"]["name"].scan(/\d/)
 
         #puts "one element"
         #puts $parsed_data[0]
@@ -98,19 +95,14 @@ class ProgressChartsAnalyzer
         cfd[date][matching_list["name"]] << action["data"]["card"]["id"]
 
         puts "Integer(parsed_data[0])"
-        #$dailycount += Integer(parsed_data[0])
-        puts "parsed_data[0]"
-        puts parsed_data[0]
-        puts "integer version"
-        puts Integer(parsed_data[0])
+        dailycount += Integer(parsed_data[0])
 
       end
       #cfd[date][matching_list['name']]["dailycount"] << dailycount
       puts "Final calculated dailycount"
       puts dailycount
     end
-    puts "CFD each"
-    puts cfd.each {|k,v| v.each {|l,c| cfd[k][l] = c.count}}
+    cfd.each {|k,v| v.each {|l,c| cfd[k][l] = l["dailycount"]}}
 
     cfd
   end
@@ -145,6 +137,8 @@ class ProgressChartsAnalyzer
 
       inScopeLists.each do |list|
         inCount += cfd[date][list["name"]]
+
+
       end
       inList_array << [date.strftime('%s000').to_i, inCount]
 
