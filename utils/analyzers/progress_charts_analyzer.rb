@@ -97,7 +97,7 @@ class ProgressChartsAnalyzer
     end
 
     cfd.each {|k,v| v.each {|l,c| cfd[k][l] = c.count}}
-
+    ap cfd
     cfd
   end
 
