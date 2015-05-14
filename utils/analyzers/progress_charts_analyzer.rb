@@ -62,6 +62,9 @@ class ProgressChartsAnalyzer
       cad[date].sort_by {|c| c["date"].to_datetime}.each do |action|
         data = action["data"]
 
+        puts "data"
+        puts data["card"]["name"]
+
         parsed_data = data["card"]["name"].scan(/\d/)
         puts parsed_data
 
