@@ -8,6 +8,10 @@ class ProgressChartsAnalyzer
     # open lists
     lists = data["lists"].select { |x| !x["closed"]}
 
+    # PRINT DATA variable
+    puts "DATA!!!!"
+    puts data
+
     startingListIndex = lists.index{ |l| startingList == l["id"]} || 0
     endingListIndex = lists.index{ |l| endingList == l["id"]} || lists.count - 1
 
