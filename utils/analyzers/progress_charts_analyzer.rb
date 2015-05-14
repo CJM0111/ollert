@@ -64,7 +64,10 @@ class ProgressChartsAnalyzer
         data = action["data"]
 
         $parsed_data = data["card"]["name"].scan(/\d/)
+        puts "parsed_data"
         puts $parsed_data
+        puts "raw data"
+        puts data["card"]["name"].scan(/\d/)
 
         #puts "one element"
         #puts $parsed_data[0]
