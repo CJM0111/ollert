@@ -95,7 +95,11 @@ class ProgressChartsAnalyzer
         cfd[date][matching_list["name"]] << action["data"]["card"]["id"]
 
         puts "Integer(parsed_data[0])"
-        $dailycount += Integer(parsed_data[0])
+        #$dailycount += Integer(parsed_data[0])
+        puts "parsed_data[0]"
+        puts parsed_data[0]
+        puts "integer version"
+        puts Integer(parsed_data[0])
 
       end
       #cfd[date][matching_list['name']]["dailycount"] << dailycount
