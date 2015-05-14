@@ -73,6 +73,23 @@ class ProgressChartsAnalyzer
         ap data
         ap open_lists
 
+        list_points = 0
+        data["card"].each do |card|
+          open_lists.each do |list|
+            if data["list"]["name"] == list["name"]
+              list_points += data["card"]["points"]
+              list["points"] = list_points
+            end
+          end
+        end
+
+        puts "list_points"
+
+        puts list_points
+
+        puts "COMEON LISTS"
+        ap open_lists
+
 
         if action["type"] == "updateCard" && !data["listAfter"].nil? && !data["listBefore"].nil?
           list = data["listAfter"]
