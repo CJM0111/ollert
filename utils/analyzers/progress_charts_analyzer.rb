@@ -131,6 +131,9 @@ class ProgressChartsAnalyzer
     cfd_values << { name: "InScope", data: inList_array}
     cfd_values << { name: "Complete", data: outList_array}
 
+    puts "CORRECT VALUES"
+    puts cfd_values
+
     {
       cfddata: cfd_values
     }
