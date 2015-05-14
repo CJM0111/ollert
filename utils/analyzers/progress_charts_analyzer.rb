@@ -56,25 +56,20 @@ class ProgressChartsAnalyzer
         cfd[date][k] = v.clone
       end unless isFirst
       isFirst = false
+      dailycount = 0
 
       next if cad[date].nil?
       cad[date].sort_by {|c| c["date"].to_datetime}.each do |action|
         data = action["data"]
 
-        $parsed_data = data["card"]["name"].scan(/\d/)
+        parsed_data = data["card"]["name"].scan(/\d/)
+        puts parsed_data
 
-        puts $parsed_data
+        #puts "one element"
+        #puts $parsed_data[0]
 
-        puts "one element"
-        puts $parsed_data[0]
-
-        puts "parsed_data type"
-        puts $parsed_data.class
-        puts "data type"
-        puts data["card"]["name"].scan(/\d/).class
-
-        parsed_data_int = Integer($parsed_data)
-        $test_global += parsed_data_int
+        # parsed_data_int = Integer($parsed_data)
+        # $test_global += parsed_data_int
         
         if action["type"] == "updateCard" && !data["listAfter"].nil? && !data["listBefore"].nil?
           list = data["listAfter"]
@@ -98,10 +93,15 @@ class ProgressChartsAnalyzer
         next if matching_list.nil?
         next if cfd[date][matching_list["name"]].include? action["data"]["card"]["id"]
         cfd[date][matching_list["name"]] << action["data"]["card"]["id"]
-        end
-    end
 
-    cfd.each {|k,v| v.each {|l,c| cfd[k][l] = c.count}}
+        dailycount += parsed_data[0]
+
+      end
+      cfd[date][matching_list['name']]["dailycount"] << dailycount
+      puts "Final calculated dailycount"
+      puts dailycount
+    end
+    cfd.each {|k,v| v.each {|l,c| cfd[k][l] = l["dailycount"]}}
 
     cfd
   end
@@ -133,26 +133,16 @@ class ProgressChartsAnalyzer
       inCount = 0
       outCount = 0
 
-      puts "global"
-      puts $test_global
-
-      puts "parsed_data"
-      puts $parsed_data
 
       inScopeLists.each do |list|
         inCount += cfd[date][list["name"]]
-        puts "cfd[date][list['name']]"
-        puts cfd[date][list["name"]]
-        puts cfd[date]
-        puts cfd
-        # inCount += 1
+
 
       end
       inList_array << [date.strftime('%s000').to_i, inCount]
 
       outOfScopeLists.each do |list|
         outCount += cfd[date][list["name"]]
-        #outCount += 1
       end
       outList_array << [date.strftime('%s000').to_i, outCount]
     end
