@@ -56,9 +56,8 @@ class ProgressChartsAnalyzer
         cfd[date][k] = v.clone
       end unless isFirst
       isFirst = false
-      $dailycount = 0
-      parsed_data
-
+      dailycount = 0
+      
       next if cad[date].nil?
       cad[date].sort_by {|c| c["date"].to_datetime}.each do |action|
         data = action["data"]
@@ -108,7 +107,7 @@ class ProgressChartsAnalyzer
       end
       #cfd[date][matching_list['name']]["dailycount"] << dailycount
       puts "Final calculated dailycount"
-      puts $dailycount
+      puts dailycount
     end
     puts "CFD each"
     puts cfd.each {|k,v| v.each {|l,c| cfd[k][l] = c.count}}
@@ -140,14 +139,12 @@ class ProgressChartsAnalyzer
     inList_array = Array.new
     outList_array = Array.new
     dates.each do |date|
-      inCount = $dailycount
+      inCount = 0
       outCount = 0
 
 
       inScopeLists.each do |list|
-        #inCount += cfd[date][list["name"]]
-
-
+        inCount += cfd[date][list["name"]]
       end
       inList_array << [date.strftime('%s000').to_i, inCount]
 
