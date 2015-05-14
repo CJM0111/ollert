@@ -64,7 +64,9 @@ class ProgressChartsAnalyzer
       cad[date].sort_by {|c| c["date"].to_datetime}.each do |action|
         data = action["data"]
         pointvalue = data["card"]["name"].scan(/\d/)
-        dailycount += Integer(pointvalue[0])
+        data["card"]["points"] = pointvalue
+
+        ap data
 
         if action["type"] == "updateCard" && !data["listAfter"].nil? && !data["listBefore"].nil?
           list = data["listAfter"]
@@ -91,7 +93,7 @@ class ProgressChartsAnalyzer
       end
 
       puts "dailycount (after full day loop): "
-      puts dailycount
+
     end
 
     puts "CFD Each godforsaken comprehension: "
