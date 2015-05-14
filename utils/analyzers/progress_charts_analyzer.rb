@@ -64,7 +64,7 @@ class ProgressChartsAnalyzer
       cad[date].sort_by {|c| c["date"].to_datetime}.each do |action|
         data = action["data"]
         pointvalue = data["card"]["name"].scan(/\d/)
-        data["card"]["points"] = pointvalue
+        data["card"]["points"] = Integer(pointvalue[0])
 
         ap data
 
@@ -96,8 +96,14 @@ class ProgressChartsAnalyzer
 
     end
 
+    ap cfd
+
     puts "CFD Each godforsaken comprehension: "
     cfd.each {|k,v| v.each {|l,c| cfd[k][l] = c.count}}
+    # cfd.each {|k,v| v.each {|l,c| cfd[k][l] = c.count}}
+    # c[i]["pointvalue"]
+
+
 
     cfd
   end
