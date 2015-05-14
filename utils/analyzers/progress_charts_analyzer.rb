@@ -117,8 +117,6 @@ class ProgressChartsAnalyzer
         puts cfd
         puts "VALUES"
         puts cfd_values
-        puts "DATA"
-        puts cfddata
         #logger.info {"cfd[#{date}][#{list}['name'] = #{cfd[date][list['name']]}"}
       end
       inList_array << [date.strftime('%s000').to_i, inCount]
