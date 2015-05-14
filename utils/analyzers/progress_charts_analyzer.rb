@@ -126,6 +126,7 @@ class ProgressChartsAnalyzer
       inCount = 0
       outCount = 0
 
+      puts "global"
       puts $test_global
 
       inScopeLists.each do |list|
