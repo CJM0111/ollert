@@ -17,6 +17,9 @@ class ProgressChartsAnalyzer
 
     cfdData = parse(data, lists)
 
+    puts "cfdData"
+    ap cfdData
+
     cfdData.reject do |date|
       index = lists.index{ |l| cfdData[date]["name"] == l["name"]}
       !index.nil? && index >= startingListIndex && index < endingListIndex
@@ -49,8 +52,6 @@ class ProgressChartsAnalyzer
 
     isFirst = true
     cad = card_actions.group_by {|ca| ca["date"].to_date}
-    #puts "CARD ACTIONS GROUPED BY DATE"
-    #ap cad
 
     return cfd if cad.empty?
     cad.keys.min.upto(Date.today).each do |date|
@@ -63,13 +64,10 @@ class ProgressChartsAnalyzer
       cad[date].sort_by {|c| c["date"].to_datetime}.each do |action|
         data = action["data"]
 
-        #puts "card name"
-        #puts data["card"]["name"]
-        #puts data["card"]
-
         parsed_data = data["card"]["name"].scan(/\d/)
 
         puts parsed_data
+        $test_global = 1
         
         if action["type"] == "updateCard" && !data["listAfter"].nil? && !data["listBefore"].nil?
           list = data["listAfter"]
@@ -97,18 +95,13 @@ class ProgressChartsAnalyzer
     end
 
     cfd.each {|k,v| v.each {|l,c| cfd[k][l] = c.count}}
-    ap cfd
+
     cfd
   end
 
   def self.formatCFD(cfd, lists)
     dates = cfd.keys.sort
 
-    puts "CFD"
-    puts cfd
-
-    puts "lists"
-    puts lists
     cfd_values = Array.new
     lists.each do |list|
       list_array = Array.new
@@ -132,6 +125,8 @@ class ProgressChartsAnalyzer
     dates.each do |date|
       inCount = 0
       outCount = 0
+
+      puts $test_global
 
       inScopeLists.each do |list|
         inCount += cfd[date][list["name"]]
