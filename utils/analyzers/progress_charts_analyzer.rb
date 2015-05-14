@@ -1,6 +1,6 @@
 require 'date'
 require 'mongoid'
-
+require 'awesome_print'
 class ProgressChartsAnalyzer
   def self.analyze(data, startingList, endingList)
     return {} if data.nil? || data.empty?
@@ -9,8 +9,8 @@ class ProgressChartsAnalyzer
     lists = data["lists"].select { |x| !x["closed"]}
 
     # PRINT DATA variable
-    puts "DATA!!!!"
-    puts data
+    #puts "DATA!!!!"
+    #ap data
 
     startingListIndex = lists.index{ |l| startingList == l["id"]} || 0
     endingListIndex = lists.index{ |l| endingList == l["id"]} || lists.count - 1
@@ -23,10 +23,10 @@ class ProgressChartsAnalyzer
     test_data = action["data"]["card"]
 
     puts "action[data][card]"
-    puts test_data
+    ap test_data
 
     puts "action['data']"
-    puts action["data"]
+    ap action["data"]
 
 
     cfdData.reject do |date|
@@ -46,11 +46,11 @@ class ProgressChartsAnalyzer
     card_actions = data["actions"].reject {|action| action["type"] == "updateList"}
     list_actions = data["actions"].select {|action| action["type"] == "updateList"}
 
-    puts "card_actions"
-    puts card_actions
+    # puts "card_actions"
+    # ap card_actions
 
-    puts "json parsing"
-    puts data["actions"]["data"]["cards"]["names"]
+    # puts "json parsing"
+    # ap data["actions"]["data"]["cards"]["names"]
 
     # open lists
     lists = data["lists"].select { |x| !x["closed"]}
@@ -67,8 +67,8 @@ class ProgressChartsAnalyzer
     isFirst = true
     cad = card_actions.group_by {|ca| ca["date"].to_date}
     puts "CARD ACTIONS GROUPED BY DATE"
-    puts cad
-    
+    ap cad
+
     return cfd if cad.empty?
     cad.keys.min.upto(Date.today).each do |date|
       cfd[date-1].each do |k,v|
