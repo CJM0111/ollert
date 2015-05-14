@@ -47,6 +47,7 @@ class ProgressChartsAnalyzer
     cad = card_actions.group_by {|ca| ca["date"].to_date}
     return cfd if cad.empty?
     cad.keys.min.upto(Date.today).each do |date|
+      dailycount = 0
       cfd[date-1].each do |k,v|
         cfd[date][k] = v.clone
       end unless isFirst
@@ -55,6 +56,8 @@ class ProgressChartsAnalyzer
       next if cad[date].nil?
       cad[date].sort_by {|c| c["date"].to_datetime}.each do |action|
         data = action["data"]
+        pointvalue = data["card"]["name"].scan(/\d/)
+        dailycount += Integer(pointvalue[0])
 
         if action["type"] == "updateCard" && !data["listAfter"].nil? && !data["listBefore"].nil?
           list = data["listAfter"]
@@ -79,6 +82,9 @@ class ProgressChartsAnalyzer
         next if cfd[date][matching_list["name"]].include? action["data"]["card"]["id"]
         cfd[date][matching_list["name"]] << action["data"]["card"]["id"]
       end
+
+      puts "dailycount (after full day loop): "
+      puts dailycount
     end
 
     puts "CFD Each godforsaken comprehension: "
