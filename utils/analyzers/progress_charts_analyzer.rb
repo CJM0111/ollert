@@ -65,6 +65,11 @@ class ProgressChartsAnalyzer
 
         puts $parsed_data
 
+        puts "parsed_data type"
+        puts type($parsed_data)
+        puts "data type"
+        puts type(data["card"]["name"].scan(/\d/))
+        
         parsed_data_int = Integer($parsed_data)
         $test_global += parsed_data_int
         
