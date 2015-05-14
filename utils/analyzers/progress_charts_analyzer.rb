@@ -63,12 +63,9 @@ class ProgressChartsAnalyzer
       cad[date].sort_by {|c| c["date"].to_datetime}.each do |action|
         data = action["data"]
 
-        puts "card name 1"
+        puts "card name"
         puts data["card"]["name"]
-
-        test_data = data["card"]["name"]
-        puts "card name 2"
-        puts test_data
+        puts data["card"]
 
         if action["type"] == "updateCard" && !data["listAfter"].nil? && !data["listBefore"].nil?
           list = data["listAfter"]
