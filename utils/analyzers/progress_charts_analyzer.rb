@@ -1,16 +1,12 @@
 require 'date'
 require 'mongoid'
-require 'awesome_print'
+
 class ProgressChartsAnalyzer
   def self.analyze(data, startingList, endingList)
     return {} if data.nil? || data.empty?
 
     # open lists
     lists = data["lists"].select { |x| !x["closed"]}
-
-    # PRINT DATA variable
-    #puts "DATA!!!!"
-    #ap data
 
     startingListIndex = lists.index{ |l| startingList == l["id"]} || 0
     endingListIndex = lists.index{ |l| endingList == l["id"]} || lists.count - 1
@@ -34,7 +30,6 @@ class ProgressChartsAnalyzer
     card_actions = data["actions"].reject {|action| action["type"] == "updateList"}
     list_actions = data["actions"].select {|action| action["type"] == "updateList"}
 
-
     # open lists
     lists = data["lists"].select { |x| !x["closed"]}
 
@@ -49,31 +44,17 @@ class ProgressChartsAnalyzer
 
     isFirst = true
     cad = card_actions.group_by {|ca| ca["date"].to_date}
-
     return cfd if cad.empty?
     cad.keys.min.upto(Date.today).each do |date|
       cfd[date-1].each do |k,v|
         cfd[date][k] = v.clone
       end unless isFirst
       isFirst = false
-      dailycount = 0
 
       next if cad[date].nil?
       cad[date].sort_by {|c| c["date"].to_datetime}.each do |action|
         data = action["data"]
 
-        puts "data"
-        puts data["card"]["name"]
-
-        parsed_data = data["card"]["name"].scan(/\d/)
-        puts parsed_data
-
-        #puts "one element"
-        #puts $parsed_data[0]
-
-        # parsed_data_int = Integer($parsed_data)
-        # $test_global += parsed_data_int
-        
         if action["type"] == "updateCard" && !data["listAfter"].nil? && !data["listBefore"].nil?
           list = data["listAfter"]
 
@@ -96,24 +77,16 @@ class ProgressChartsAnalyzer
         next if matching_list.nil?
         next if cfd[date][matching_list["name"]].include? action["data"]["card"]["id"]
         cfd[date][matching_list["name"]] << action["data"]["card"]["id"]
-
-        puts "Integer(parsed_data[0])"
-        dailycount += Integer(parsed_data[0])
-
       end
-      #cfd[date][matching_list['name']]["dailycount"] << dailycount
-      puts "Final calculated dailycount"
-      puts dailycount
-      $global_count = dailycount
     end
-    cfd.each {|k,v| v.each {|l,c| cfd[k][l] = l["dailycount"]}}
+
+    cfd.each {|k,v| v.each {|l,c| cfd[k][l] = c.count}}
 
     cfd
   end
 
   def self.formatCFD(cfd, lists)
     dates = cfd.keys.sort
-
     cfd_values = Array.new
     lists.each do |list|
       list_array = Array.new
@@ -135,20 +108,16 @@ class ProgressChartsAnalyzer
     inList_array = Array.new
     outList_array = Array.new
     dates.each do |date|
-      inCount = $global_count
+      inCount = 0
       outCount = 0
 
-      puts "inCount"
-      puts inCount
-
       inScopeLists.each do |list|
-        #inCount += cfd[date][list["name"]]
-
+        inCount += cfd[date][list["name"]]
       end
       inList_array << [date.strftime('%s000').to_i, inCount]
 
       outOfScopeLists.each do |list|
-        #outCount += cfd[date][list["name"]]
+        outCount += cfd[date][list["name"]]
       end
       outList_array << [date.strftime('%s000').to_i, outCount]
     end
