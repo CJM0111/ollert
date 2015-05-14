@@ -12,6 +12,9 @@ class ProgressChartsAnalyzer
     puts "DATA!!!!"
     puts data
 
+    puts "CARD TITLE"
+    puts data.actions.card.name
+
     startingListIndex = lists.index{ |l| startingList == l["id"]} || 0
     endingListIndex = lists.index{ |l| endingList == l["id"]} || lists.count - 1
 
@@ -117,11 +120,6 @@ class ProgressChartsAnalyzer
 
       inScopeLists.each do |list|
         inCount += cfd[date][list["name"]]
-        puts "THIS IS THE TEST OF CFD: "
-        puts cfd
-        puts "VALUES"
-        puts cfd_values
-        #logger.info {"cfd[#{date}][#{list}['name'] = #{cfd[date][list['name']]}"}
       end
       inList_array << [date.strftime('%s000').to_i, inCount]
 
@@ -132,9 +130,6 @@ class ProgressChartsAnalyzer
     end
     cfd_values << { name: "InScope", data: inList_array}
     cfd_values << { name: "Complete", data: outList_array}
-
-    puts "CORRECT VALUES"
-    puts cfd_values
 
     {
       cfddata: cfd_values
