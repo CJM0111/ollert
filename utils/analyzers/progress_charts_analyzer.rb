@@ -64,9 +64,10 @@ class ProgressChartsAnalyzer
       cad[date].sort_by {|c| c["date"].to_datetime}.each do |action|
         data = action["data"]
 
-        parsed_data = data["card"]["name"].scan(/\d/)
+        $parsed_data = data["card"]["name"].scan(/\d/)
 
         puts parsed_data
+
         $test_global = 1
         
         if action["type"] == "updateCard" && !data["listAfter"].nil? && !data["listBefore"].nil?
@@ -128,6 +129,9 @@ class ProgressChartsAnalyzer
 
       puts "global"
       puts $test_global
+
+      puts "parsed_data"
+      puts $parsed_data
 
       inScopeLists.each do |list|
         inCount += cfd[date][list["name"]]
