@@ -37,6 +37,12 @@ class ProgressChartsAnalyzer
     card_actions = data["actions"].reject {|action| action["type"] == "updateList"}
     list_actions = data["actions"].select {|action| action["type"] == "updateList"}
 
+    puts "card_actions"
+    puts card_actions
+
+    puts "json parsing"
+    puts data["actions"]["data"]["cards"]["names"]
+
     # open lists
     lists = data["lists"].select { |x| !x["closed"]}
 
