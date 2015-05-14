@@ -94,7 +94,8 @@ class ProgressChartsAnalyzer
         next if cfd[date][matching_list["name"]].include? action["data"]["card"]["id"]
         cfd[date][matching_list["name"]] << action["data"]["card"]["id"]
 
-        dailycount += parsed_data[0]
+        puts parsed_data[0].class
+        #dailycount += parsed_data[0]
 
       end
       cfd[date][matching_list['name']]["dailycount"] << dailycount
