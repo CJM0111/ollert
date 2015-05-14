@@ -68,7 +68,7 @@ class ProgressChartsAnalyzer
 
         puts $parsed_data
 
-        $test_global = 1
+        $test_global += $parsed_data
         
         if action["type"] == "updateCard" && !data["listAfter"].nil? && !data["listBefore"].nil?
           list = data["listAfter"]
