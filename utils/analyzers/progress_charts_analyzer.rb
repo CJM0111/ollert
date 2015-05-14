@@ -57,13 +57,14 @@ class ProgressChartsAnalyzer
       end unless isFirst
       isFirst = false
       $dailycount = 0
+      $parsed_data
 
       next if cad[date].nil?
       cad[date].sort_by {|c| c["date"].to_datetime}.each do |action|
         data = action["data"]
 
-        parsed_data = data["card"]["name"].scan(/\d/)
-        puts parsed_data
+        $parsed_data = data["card"]["name"].scan(/\d/)
+        puts $parsed_data
 
         #puts "one element"
         #puts $parsed_data[0]
@@ -97,9 +98,9 @@ class ProgressChartsAnalyzer
         puts "Integer(parsed_data[0])"
         #$dailycount += Integer(parsed_data[0])
         puts "parsed_data[0]"
-        puts parsed_data[0]
+        puts $parsed_data[0]
         puts "integer version"
-        puts Integer(parsed_data[0])
+        puts Integer($parsed_data[0])
 
       end
       #cfd[date][matching_list['name']]["dailycount"] << dailycount
