@@ -128,8 +128,11 @@ class ProgressChartsAnalyzer
       outCount = 0
 
       inScopeLists.each do |list|
-        #inCount += cfd[date][list["name"]]
-        inCount += 1
+        inCount += cfd[date][list["name"]]
+        puts inCount
+        puts cfd[date][list["name"]]
+        # inCount += 1
+
       end
       inList_array << [date.strftime('%s000').to_i, inCount]
 
