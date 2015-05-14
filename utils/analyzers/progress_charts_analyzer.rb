@@ -138,6 +138,8 @@ class ProgressChartsAnalyzer
       inCount = $global_count
       outCount = 0
 
+      puts "inCount"
+      puts inCount
 
       inScopeLists.each do |list|
         #inCount += cfd[date][list["name"]]
@@ -146,7 +148,7 @@ class ProgressChartsAnalyzer
       inList_array << [date.strftime('%s000').to_i, inCount]
 
       outOfScopeLists.each do |list|
-        outCount += cfd[date][list["name"]]
+        #outCount += cfd[date][list["name"]]
       end
       outList_array << [date.strftime('%s000').to_i, outCount]
     end
