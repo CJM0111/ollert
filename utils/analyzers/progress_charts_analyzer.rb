@@ -49,8 +49,8 @@ class ProgressChartsAnalyzer
 
     isFirst = true
     cad = card_actions.group_by {|ca| ca["date"].to_date}
-    puts "CARD ACTIONS GROUPED BY DATE"
-    ap cad
+    #puts "CARD ACTIONS GROUPED BY DATE"
+    #ap cad
 
     return cfd if cad.empty?
     cad.keys.min.upto(Date.today).each do |date|
@@ -63,9 +63,9 @@ class ProgressChartsAnalyzer
       cad[date].sort_by {|c| c["date"].to_datetime}.each do |action|
         data = action["data"]
 
-        puts "card name"
-        puts data["card"]["name"]
-        puts data["card"]
+        #puts "card name"
+        #puts data["card"]["name"]
+        #puts data["card"]
 
         parsed_data = data["card"]["name"].scan(/\d/)
 
@@ -93,11 +93,7 @@ class ProgressChartsAnalyzer
         next if matching_list.nil?
         next if cfd[date][matching_list["name"]].include? action["data"]["card"]["id"]
         cfd[date][matching_list["name"]] << action["data"]["card"]["id"]
-        puts "cfd[date][matching_list['name']"
-        ap cfd[date][matching_list["name"]]
-        puts "action['data']['card']['id']"
-        ap action["data"]["card"]["id"]
-      end
+        end
     end
 
     cfd.each {|k,v| v.each {|l,c| cfd[k][l] = c.count}}
@@ -136,6 +132,7 @@ class ProgressChartsAnalyzer
         puts "cfd[date][list['name']]"
         puts cfd[date][list["name"]]
         puts cfd[date]
+        puts cfd
         # inCount += 1
 
       end
