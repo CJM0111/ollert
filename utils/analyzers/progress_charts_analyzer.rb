@@ -67,6 +67,7 @@ class ProgressChartsAnalyzer
         data["card"]["points"] = Integer(pointvalue[0])
 
         ap data
+        ap open_lists
 
         #puts "data[list]"
         #ap data["list"]
