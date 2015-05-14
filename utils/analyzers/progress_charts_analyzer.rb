@@ -66,7 +66,7 @@ class ProgressChartsAnalyzer
 
         $parsed_data = data["card"]["name"].scan(/\d/)
 
-        puts parsed_data
+        puts $parsed_data
 
         $test_global = 1
         
