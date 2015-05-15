@@ -46,6 +46,8 @@ class ProgressChartsAnalyzer
       h[k] = Hash[open_lists.collect { |list| [list["name"], []] }]
     end
 
+    puts "Printing card actions, bout to go ham"
+    ap card_actions
 
     isFirst = true
     cad = card_actions.group_by {|ca| ca["date"].to_date}
