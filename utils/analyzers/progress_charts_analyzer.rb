@@ -79,10 +79,11 @@ class ProgressChartsAnalyzer
           matching_list = open_lists.select {|l| l["id"] == data["listBefore"]["id"]}.first
           unless matching_list.nil?
             cfd[date][matching_list["name"]].delete data["card"]["id"]
-            #cfdpoints[date][matching_list["name"]].delete data["card"]["id"]
+            cfdpoints[date][matching_list["name"]].delete data["card"]["id"]
             puts "Found an update: Printing cfdpoints[date][matching_list[name]] and class"
             puts cfdpoints[date][matching_list["name"]]
             puts cfdpoints[date][matching_list["name"]].class
+            puts data["card"]["id"]
 
           end
         elsif action["type"] == "createCard"
