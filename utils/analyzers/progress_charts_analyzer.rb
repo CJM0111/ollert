@@ -128,6 +128,8 @@ class ProgressChartsAnalyzer
     cfd.each {|k,v| v.each {|l,c| cfd[k][l] = c.count}}
     #cfdpoints.each {|k,v| v.each {|l,c| cfd[k][l] = c.inject(:+)}}
     #cfdpoints.each {|k,v| v.each {|l,c| cfdpoints[k][l] = c.inject{|sum,x| sum + x}}}
+
+
     cfdpoints.each do |date, list|
       lpoints = 0
       list.each do |id, points|
