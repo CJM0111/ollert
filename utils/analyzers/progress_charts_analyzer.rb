@@ -134,10 +134,11 @@ class ProgressChartsAnalyzer
       lpoints = 0
       puts date
       puts list
-      list.each do |id, points|
-        puts id
-        puts points
-        lpoints += id[points]
+      list.each do |l, idp|
+        idp.each do |id, p|
+          lpoints += p
+        end
+
       end
       cfdpoints[date][list] = lpoints
     end
