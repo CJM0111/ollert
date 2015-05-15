@@ -116,15 +116,8 @@ class ProgressChartsAnalyzer
         puts date
         print "Action type was: "
         puts action["type"]
-        print "Card id affected: "
-        puts data["card"]["id"]
-        puts "Final list: "
-        ap list
-        if action["type"] == "updateCard"
-          print "Starting list: "
-          ap open_lists.select {|l| l["id"] == data["listBefore"]["id"]}.first
-        end
-
+        print "Card affected: "
+        puts data["card"]["name"]
 
       end
 
