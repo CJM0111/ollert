@@ -144,6 +144,7 @@ class ProgressChartsAnalyzer
         end
 
       end
+      cfdpoints[date][list].delete
       cfdpoints[date][list] = lpoints
     end
 
