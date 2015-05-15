@@ -105,6 +105,7 @@ class ProgressChartsAnalyzer
         matching_list = open_lists.select {|l| l["id"] == list["id"]}.first
         next if matching_list.nil?
         next if cfd[date][matching_list["name"]].include? action["data"]["card"]["id"]
+        next if cfdpoints[date][matching_list["name"]].include? action["data"]["card"]["id"]
         cfd[date][matching_list["name"]] << action["data"]["card"]["id"]
         idpoints = Hash.new()
         idpoints[action["data"]["card"]["id"]] = action["data"]["card"]["points"]
