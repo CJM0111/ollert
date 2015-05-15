@@ -78,27 +78,6 @@ class ProgressChartsAnalyzer
         pointvalue = data["card"]["name"].scan(/\d/)
         data["card"]["points"] = Integer(pointvalue[0])
 
-        ap data
-        #ap open_lists
-
-        # list_points = 0
-        # data["card"].each do |card|
-        #   open_lists.each do |list|
-        #     if data["list"]["name"] == list["name"]
-        #       list_points += data["card"]["points"]
-        #       list["points"] = list_points
-        #     end
-        #   end
-        # end
-
-        #puts "list_points"
-
-        # puts list_points
-
-        #puts "COMEON LISTS"
-        #ap open_lists
-
-
         if action["type"] == "updateCard" && !data["listAfter"].nil? && !data["listBefore"].nil?
           list = data["listAfter"]
 
@@ -120,7 +99,6 @@ class ProgressChartsAnalyzer
         end
 
         matching_list = open_lists.select {|l| l["id"] == list["id"]}.first
-        matching_index = open_lists.find_index{|l| l["id"] == list["id"]}
         next if matching_list.nil?
         next if cfd[date][matching_list["name"]].include? action["data"]["card"]["id"]
         cfd[date][matching_list["name"]] << action["data"]["card"]["id"]
@@ -140,11 +118,6 @@ class ProgressChartsAnalyzer
     #cfdpoints.each {|k,v| v.each {|l,c| cfd[k][l] = c.inject(:+)}}
     cfdpoints.each {|k,v| v.each {|l,c| cfdpoints[k][l] = c.inject{|sum,x| sum + x}}}
 
-
-
-    # cfd.each {|k,v| v.each {|l,c| cfd[k][l] = c.count}}
-    # c[i]["pointvalue"]
-
     puts "CFD after comprehension"
     puts "============="
     ap cfd
@@ -154,7 +127,7 @@ class ProgressChartsAnalyzer
     ap cfdpoints
 
 
-    cfd
+    cfdpoints
   end
 
   def self.formatCFD(cfd, lists)
