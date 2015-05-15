@@ -105,8 +105,8 @@ class ProgressChartsAnalyzer
         next if matching_list.nil?
         next if cfd[date][matching_list["name"]].include? action["data"]["card"]["id"]
         cfd[date][matching_list["name"]] << action["data"]["card"]["id"]
-        cfdpoints[date][matching_list["name"]] << action["data"]["card"]["id"]
-        cfdpoints[date][matching_list["name"][action["data"]["card"]["id"]]] == action["data"]["card"]["points"]
+        cfdpoints[date][matching_list["name"]] << Hash(action["data"]["card"]["id"],action["data"]["card"]["points"])
+        #cfdpoints[date][matching_list["name"][action["data"]["card"]["id"]]] == action["data"]["card"]["points"]
 
 
       end
