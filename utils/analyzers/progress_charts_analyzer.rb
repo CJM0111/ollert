@@ -118,6 +118,8 @@ class ProgressChartsAnalyzer
         puts action["type"]
         print "Card affected: "
         puts data["card"]["name"]
+        puts "Card point value: "
+        puts data["card"]["points"]
 
       end
 
