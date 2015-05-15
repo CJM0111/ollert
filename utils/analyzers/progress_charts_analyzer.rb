@@ -62,10 +62,6 @@ class ProgressChartsAnalyzer
       end unless isFirst
       isFirst = false
 
-      puts "NEW DATE"
-      puts "========"
-      puts date
-
       next if cad[date].nil?
       cad[date].sort_by {|c| c["date"].to_datetime}.each do |action|
         data = action["data"]
@@ -120,11 +116,6 @@ class ProgressChartsAnalyzer
     # cfdpoints, after squashing, becomes a hash very similar to cfd, but the values of V are the point values of the cards,
     # not their IDs.
 
-    puts "CFD before comprehension"
-    ap cfd
-    puts "CFD points before comprehension"
-    ap cfdpoints
-
     cfd.each {|k,v| v.each {|l,c| cfd[k][l] = c.count}}
     #cfdpoints.each {|k,v| v.each {|l,c| cfd[k][l] = c.inject(:+)}}
     #cfdpoints.each {|k,v| v.each {|l,c| cfdpoints[k][l] = c.inject{|sum,x| sum + x}}}
@@ -132,29 +123,16 @@ class ProgressChartsAnalyzer
 
     cfdpoints.keys.each do |date|
       lpoints = 0
-      puts date
       cfdpoints[date].keys.each do |l|
-        puts l
-        puts l.class
         cfdpoints[date][l].each do |id, p|
-          puts id
-          puts p
           lpoints += p
         end
         cfdpoints[date][l] = lpoints
       end
-
     end
 
-    puts "CFD after comprehension"
-    puts "============="
-    ap cfd
-    puts "CFD points after comprehension"
-    puts "==============="
-    ap cfdpoints
-
-
     cfdpoints
+
   end
 
   def self.formatCFD(cfd, lists)
