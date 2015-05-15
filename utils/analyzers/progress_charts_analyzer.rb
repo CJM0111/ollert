@@ -78,13 +78,8 @@ class ProgressChartsAnalyzer
 
           matching_list = open_lists.select {|l| l["id"] == data["listBefore"]["id"]}.first
           unless matching_list.nil?
-            puts "Matching list for update: "
-            ap matching_list
-            ap cfd[date][matching_list["name"]]
-            ap cfdpoints[date][matching_list["name"]]
-            ap data["card"]["id"]
             cfd[date][matching_list["name"]].delete data["card"]["id"]
-            cfdpoints[date][matching_list["name"]].delete data["card"]["id"]
+            #cfdpoints[date][matching_list["name"]].delete data["card"]["id"]
           end
         elsif action["type"] == "createCard"
           list = data["list"]
@@ -93,7 +88,7 @@ class ProgressChartsAnalyzer
           list = cfd[date].select {|k,v| v.any? {|cid| cid == data["card"]["id"]}}
           unless list.nil? || list.count != 1
             cfd[date][list.keys.first].delete data["card"]["id"]
-            cfdpoints[date][list.keys.first].delete data["card"]["id"]
+            #cfdpoints[date][list.keys.first].delete data["card"]["id"]
           end
           next
         end
@@ -105,6 +100,18 @@ class ProgressChartsAnalyzer
         idpoints = Hash.new()
         idpoints[action["data"]["card"]["id"]] = action["data"]["card"]["points"]
         cfdpoints[date][matching_list["name"]] = idpoints
+
+        print "Action type was: "
+        print action["type"]
+        print "Card id affected: "
+        print data["card"]["id"]
+        print "Final list: "
+        ap list
+        if action["type"] == "updateCard"
+          print "Starting list: "
+          ap open_lists.select {|l| l["id"] == data["listBefore"]["id"]}.first
+        end
+
 
       end
 
