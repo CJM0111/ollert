@@ -56,7 +56,7 @@ class ProgressChartsAnalyzer
         cfd[date][k] = v.clone
       cfdpoints[date-1].each do |k,v|
         cfdpoints[date][k] = v.clone
-      end
+      end unless isFirst
 
       end unless isFirst
       isFirst = false
@@ -155,8 +155,6 @@ class ProgressChartsAnalyzer
   def self.formatBurnUp(cfd, inScopeLists, outOfScopeLists)
     dates = cfd.keys.sort
 
-    puts "Printing cfd from formatBurnUp"
-    ap cfd
 
     cfd_values = Array.new
    
