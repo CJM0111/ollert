@@ -43,7 +43,7 @@ class ProgressChartsAnalyzer
       h[k] = Hash[open_lists.collect { |list| [list["name"], []] }]
     end
     cfdpoints = Hash.new do |h, k|
-      h[k] = Hash[open_lists.collect { |list| [list["name"], []] }]
+      h[k] = Hash[open_lists.collect { |list| [list["name"], {}] }]
     end
 
     puts "Printing card actions, bout to go ham"
