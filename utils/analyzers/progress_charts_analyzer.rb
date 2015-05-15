@@ -109,6 +109,15 @@ class ProgressChartsAnalyzer
 
     end
 
+    # What's been done here?
+    # cfd holds the IDs of cards before getting squashed.
+    # Once squashed, cfd becomes a hash using dates for keys and another hash we'll call V for values
+    # V uses list names for keys and the amount of cards in that list as the values
+    # cfdpoints, after squashing, becomes a hash very similar to cfd, but the values of V are the point values of the cards,
+    # not their IDs. Somehow, returning this breaks the Cumulative Flow Diagram, by making it display nonsensical data
+    # todo: Refactor the Cumulative Flow Diagram to not break.
+
+
     puts "CFD before comprehension"
     ap cfd
     puts "CFD points before comprehension"

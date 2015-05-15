@@ -48,13 +48,13 @@ var CfdChartBuilder = (function () {
       yAxis: {
         floor: 0,
         title: {
-          text: 'Cards'
+          text: 'Points'
         },
         labels: {}
       },
       tooltip: {
         shared: true,
-        valueSuffix: ' cards'
+        valueSuffix: ' points'
       },
       plotOptions: {
         area: {
