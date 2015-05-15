@@ -110,7 +110,7 @@ class ProgressChartsAnalyzer
         idpoints = Hash.new()
         idpoints[action["data"]["card"]["id"]] = action["data"]["card"]["points"]
         puts cfdpoints[date][matching_list["name"]].class
-        cfdpoints[date][matching_list["name"]][action["data"]["card"]["id"]] = action["data"]["card"]["points"]
+        # cfdpoints[date][matching_list["name"]][action["data"]["card"]["id"]] = action["data"]["card"]["points"]
 
         print "Date: "
         puts date
