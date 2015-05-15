@@ -142,7 +142,7 @@ class ProgressChartsAnalyzer
           puts p
           lpoints += p
         end
-        cfdpoints[date][lists["l"]] = lpoints
+        cfdpoints[date][lists[l]] = lpoints
       end
 
     end
