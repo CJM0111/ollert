@@ -64,14 +64,16 @@ class ProgressChartsAnalyzer
         list["points"] = 0
       end
 
+      puts "NEW DATE"
+      puts "========"
+      puts date
+
       next if cad[date].nil?
       cad[date].sort_by {|c| c["date"].to_datetime}.each do |action|
         data = action["data"]
         pointvalue = data["card"]["name"].scan(/\d/)
         data["card"]["points"] = Integer(pointvalue[0])
-        puts "NEW DATE"
-        puts "========"
-        puts date
+
         ap data
         #ap open_lists
 
@@ -133,8 +135,9 @@ class ProgressChartsAnalyzer
 
     puts "CFD debugging"
     puts "============="
+    puts cfd
     cfd
-    
+
   end
 
   def self.formatCFD(cfd, lists)
