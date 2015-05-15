@@ -75,8 +75,13 @@ class ProgressChartsAnalyzer
       next if cad[date].nil?
       cad[date].sort_by {|c| c["date"].to_datetime}.each do |action|
         data = action["data"]
-        pointvalue = data["card"]["name"].scan(/\d/)
-        data["card"]["points"] = Integer(pointvalue[0])
+        pointvalue = data["card"]["name"].scan(/(?:\d*\.)?\d+/)
+        if pointvalue.length == 0
+          data["card"]["points"] = 0.0
+        else
+          data["card"]["points"] = pointvalue[0].to_f
+        end
+
 
         if action["type"] == "updateCard" && !data["listAfter"].nil? && !data["listBefore"].nil?
           list = data["listAfter"]
