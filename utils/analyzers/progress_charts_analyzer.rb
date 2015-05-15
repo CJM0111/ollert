@@ -101,14 +101,16 @@ class ProgressChartsAnalyzer
         idpoints[action["data"]["card"]["id"]] = action["data"]["card"]["points"]
         cfdpoints[date][matching_list["name"]] = idpoints
 
+        print "Date: "
+        puts date
         print "Action type was: "
-        print action["type"]
-        puts "Card id affected: "
-        print data["card"]["id"]
+        puts action["type"]
+        print "Card id affected: "
+        puts data["card"]["id"]
         puts "Final list: "
         ap list
         if action["type"] == "updateCard"
-          puts "Starting list: "
+          print "Starting list: "
           ap open_lists.select {|l| l["id"] == data["listBefore"]["id"]}.first
         end
 
