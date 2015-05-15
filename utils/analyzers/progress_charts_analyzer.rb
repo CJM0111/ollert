@@ -100,9 +100,9 @@ class ProgressChartsAnalyzer
 
 
         if action["type"] == "updateCard" && !data["listAfter"].nil? && !data["listBefore"].nil?
-          list = data["listBefore"]
+          list = data["listAfter"]
 
-          matching_list = open_lists.select {|l| l["id"] == data["listAfter"]["id"]}.first
+          matching_list = open_lists.select {|l| l["id"] == data["listBefore"]["id"]}.first
           unless matching_list.nil?
             cfd[date][matching_list["name"]].delete data["card"]["id"]
             cfdpoints[date][matching_list["name"]].delete data["card"]["points"]
