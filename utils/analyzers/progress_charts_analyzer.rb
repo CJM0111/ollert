@@ -122,7 +122,7 @@ class ProgressChartsAnalyzer
         next if matching_list.nil?
         next if cfd[date][matching_list["name"]].include? action["data"]["card"]["id"]
         cfd[date][matching_list["name"]] << action["data"]["card"]["id"]
-        cfdpoints[matching_list["name"]] << action["data"]["card"]["points"]
+        cfdpoints[date][matching_list["name"]] << action["data"]["card"]["points"]
         open_lists[matching_index]["points"] += action["data"]["card"]["points"]
 
       end
