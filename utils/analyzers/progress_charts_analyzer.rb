@@ -53,7 +53,7 @@ class ProgressChartsAnalyzer
     cad = card_actions.group_by {|ca| ca["date"].to_date}
     return cfd if cad.empty?
     cad.keys.min.upto(Date.today).each do |date|
-      dailycount = 0
+
       cfd[date-1].each do |k,v|
         cfd[date][k] = v.clone
       end unless isFirst
@@ -81,8 +81,12 @@ class ProgressChartsAnalyzer
             cfd[date][matching_list["name"]].delete data["card"]["id"]
             cfdpoints[date][matching_list["name"]].delete data["card"]["id"]
             puts "Found an update: Printing cfdpoints[date][matching_list[name]] and class"
+            puts "cfdpoints[date][matching_list[name]]"
             puts cfdpoints[date][matching_list["name"]]
             puts cfdpoints[date][matching_list["name"]].class
+            puts "cfd[date][matching_list[name]]"
+            puts cfd[date][matching_list["name"]]
+            puts cfd[date][matching_list["name"]].class
             puts data["card"]["id"]
 
           end
