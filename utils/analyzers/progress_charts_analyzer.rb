@@ -142,8 +142,8 @@ class ProgressChartsAnalyzer
 
     cfd.each {|k,v| v.each {|l,c| cfd[k][l] = c.count}}
     cfdpoints.keys.each do |date|
-      lpoints = 0
       cfdpoints[date].keys.each do |l|
+        lpoints = 0
         cfdpoints[date][l].each do |id, p|
           lpoints += p
         end
