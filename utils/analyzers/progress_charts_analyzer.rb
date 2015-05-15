@@ -124,6 +124,8 @@ class ProgressChartsAnalyzer
 
     end
 
+    puts "CFD before comprehension"
+    ap cfd
 
     cfd.each {|k,v| v.each {|l,c| cfd[k][l] = c.count}}
     # cfd.each {|k,v| v.each {|l,c| cfd[k][l] = c.count}}
@@ -133,9 +135,9 @@ class ProgressChartsAnalyzer
     puts "==============="
     ap open_lists
 
-    puts "CFD debugging"
+    puts "CFD after comprehension"
     puts "============="
-    puts cfd
+    ap cfd
     cfd
 
   end
