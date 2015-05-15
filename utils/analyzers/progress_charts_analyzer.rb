@@ -131,7 +131,7 @@ class ProgressChartsAnalyzer
     cfdpoints.each do |date, list|
       lpoints = 0
       list.each do |id, points|
-        lpoints += points
+        lpoints += points[id]
       end
       cfdpoints[date][list] = lpoints
     end
