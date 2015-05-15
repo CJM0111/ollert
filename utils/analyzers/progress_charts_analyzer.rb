@@ -69,7 +69,9 @@ class ProgressChartsAnalyzer
         data = action["data"]
         pointvalue = data["card"]["name"].scan(/\d/)
         data["card"]["points"] = Integer(pointvalue[0])
-
+        puts "NEW DATE"
+        puts "========"
+        puts date
         ap data
         #ap open_lists
 
@@ -121,15 +123,18 @@ class ProgressChartsAnalyzer
     end
 
 
-
-    puts "CFD Each godforsaken comprehension: "
     cfd.each {|k,v| v.each {|l,c| cfd[k][l] = c.count}}
     # cfd.each {|k,v| v.each {|l,c| cfd[k][l] = c.count}}
     # c[i]["pointvalue"]
 
+    puts "Lists debugging"
+    puts "==============="
     ap open_lists
 
+    puts "CFD debugging"
+    puts "============="
     cfd
+    
   end
 
   def self.formatCFD(cfd, lists)
