@@ -80,13 +80,6 @@ class ProgressChartsAnalyzer
           unless matching_list.nil?
             cfd[date][matching_list["name"]].delete data["card"]["id"]
             cfdpoints[date][matching_list["name"]].delete data["card"]["id"]
-            puts "Found an update: Printing cfdpoints[date][matching_list[name]] and class"
-            puts "cfdpoints[date][matching_list[name]]"
-            puts cfdpoints[date][matching_list["name"]]
-            puts cfdpoints[date][matching_list["name"]].class
-            puts "cfd[date][matching_list[name]]"
-            puts cfd[date][matching_list["name"]]
-            puts cfd[date][matching_list["name"]].class
             puts data["card"]["id"]
 
           end
@@ -97,7 +90,7 @@ class ProgressChartsAnalyzer
           list = cfd[date].select {|k,v| v.any? {|cid| cid == data["card"]["id"]}}
           unless list.nil? || list.count != 1
             cfd[date][list.keys.first].delete data["card"]["id"]
-            #cfdpoints[date][list.keys.first].delete data["card"]["id"]
+            cfdpoints[date][list.keys.first].delete data["card"]["id"]
           end
           next
         end
