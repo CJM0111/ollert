@@ -103,12 +103,12 @@ class ProgressChartsAnalyzer
 
         print "Action type was: "
         print action["type"]
-        print "Card id affected: "
+        puts "Card id affected: "
         print data["card"]["id"]
-        print "Final list: "
+        puts "Final list: "
         ap list
         if action["type"] == "updateCard"
-          print "Starting list: "
+          puts "Starting list: "
           ap open_lists.select {|l| l["id"] == data["listBefore"]["id"]}.first
         end
 
