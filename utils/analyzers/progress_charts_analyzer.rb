@@ -105,6 +105,7 @@ class ProgressChartsAnalyzer
           matching_list = open_lists.select {|l| l["id"] == data["listAfter"]["id"]}.first
           unless matching_list.nil?
             cfd[date][matching_list["name"]].delete data["card"]["id"]
+            cfdpoints[date][matching_list["name"]].delete data["card"]["points"]
           end
         elsif action["type"] == "createCard"
           list = data["list"]
@@ -113,6 +114,7 @@ class ProgressChartsAnalyzer
           list = cfd[date].select {|k,v| v.any? {|cid| cid == data["card"]["id"]}}
           unless list.nil? || list.count != 1
             cfd[date][list.keys.first].delete data["card"]["id"]
+            cfdpoints[date][list.keys.first].delete data["card"]["points"]
           end
           next
         end
@@ -123,7 +125,7 @@ class ProgressChartsAnalyzer
         next if cfd[date][matching_list["name"]].include? action["data"]["card"]["id"]
         cfd[date][matching_list["name"]] << action["data"]["card"]["id"]
         cfdpoints[date][matching_list["name"]] << action["data"]["card"]["points"]
-        open_lists[matching_index]["points"] += action["data"]["card"]["points"]
+
 
       end
 
@@ -137,10 +139,6 @@ class ProgressChartsAnalyzer
     cfdpoints.each {|k,v| v.each {|l,c| cfd[k][l] = c.inject(:+)}}
     # cfd.each {|k,v| v.each {|l,c| cfd[k][l] = c.count}}
     # c[i]["pointvalue"]
-
-    puts "Lists debugging"
-    puts "==============="
-    ap open_lists
 
     puts "CFD after comprehension"
     puts "============="
