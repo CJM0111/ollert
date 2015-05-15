@@ -80,6 +80,10 @@ class ProgressChartsAnalyzer
           unless matching_list.nil?
             cfd[date][matching_list["name"]].delete data["card"]["id"]
             #cfdpoints[date][matching_list["name"]].delete data["card"]["id"]
+            puts "Found an update: Printing cfdpoints[date][matching_list[name]] and class"
+            puts cfdpoints[date][matching_list["name"]]
+            puts cfdpoints[date][matching_list["name"]].class
+
           end
         elsif action["type"] == "createCard"
           list = data["list"]
