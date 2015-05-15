@@ -37,13 +37,6 @@ class ProgressChartsAnalyzer
     build(card_actions, lists)
   end
 
-
-  # Date => {
-  # "List" => "Cardcount"
-  # }
-
-
-
   def self.build(card_actions, open_lists)
     now = Time.now
     cfd = Hash.new do |h, k|
@@ -63,10 +56,6 @@ class ProgressChartsAnalyzer
         cfd[date][k] = v.clone
       end unless isFirst
       isFirst = false
-
-      open_lists.each do |list|
-        list["points"] = 0
-      end
 
       puts "NEW DATE"
       puts "========"
@@ -119,9 +108,7 @@ class ProgressChartsAnalyzer
     # Once squashed, cfd becomes a hash using dates for keys and another hash we'll call V for values
     # V uses list names for keys and the amount of cards in that list as the values
     # cfdpoints, after squashing, becomes a hash very similar to cfd, but the values of V are the point values of the cards,
-    # not their IDs. Somehow, returning this breaks the Cumulative Flow Diagram, by making it display nonsensical data
-    # todo: Refactor the Cumulative Flow Diagram to not break.
-
+    # not their IDs.
 
     puts "CFD before comprehension"
     ap cfd
@@ -163,6 +150,10 @@ class ProgressChartsAnalyzer
 
   def self.formatBurnUp(cfd, inScopeLists, outOfScopeLists)
     dates = cfd.keys.sort
+
+    puts "Printing cfd from formatBurnUp"
+    ap cfd
+
     cfd_values = Array.new
    
     inList_array = Array.new
