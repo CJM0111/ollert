@@ -54,10 +54,9 @@ class ProgressChartsAnalyzer
       dailycount = 0
       cfd[date-1].each do |k,v|
         cfd[date][k] = v.clone
+      end unless isFirst
       cfdpoints[date-1].each do |k,v|
         cfdpoints[date][k] = v.clone
-      end unless isFirst
-
       end unless isFirst
       isFirst = false
 
