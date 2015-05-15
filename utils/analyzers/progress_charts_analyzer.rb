@@ -133,10 +133,12 @@ class ProgressChartsAnalyzer
 
     puts "CFD before comprehension"
     ap cfd
+    puts "CFD points before comprehension"
     ap cfdpoints
 
     cfd.each {|k,v| v.each {|l,c| cfd[k][l] = c.count}}
     cfdpoints.each {|k,v| v.each {|l,c| cfd[k][l] = c.inject(:+)}}
+
     # cfd.each {|k,v| v.each {|l,c| cfd[k][l] = c.count}}
     # c[i]["pointvalue"]
 
