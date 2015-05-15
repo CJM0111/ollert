@@ -49,6 +49,10 @@ class ProgressChartsAnalyzer
     cfd = Hash.new do |h, k|
       h[k] = Hash[open_lists.collect { |list| [list["name"], []] }]
     end
+    cfdpoints = Hash.new do |h, k|
+      h[k] = Hash[open_lists.collect { |list| [list["name"], []] }]
+    end
+
 
     isFirst = true
     cad = card_actions.group_by {|ca| ca["date"].to_date}
@@ -118,6 +122,7 @@ class ProgressChartsAnalyzer
         next if matching_list.nil?
         next if cfd[date][matching_list["name"]].include? action["data"]["card"]["id"]
         cfd[date][matching_list["name"]] << action["data"]["card"]["id"]
+        cfdpoints[matching_list["name"]] << action["data"]["card"]["points"]
         open_lists[matching_index]["points"] += action["data"]["card"]["points"]
 
       end
@@ -126,8 +131,10 @@ class ProgressChartsAnalyzer
 
     puts "CFD before comprehension"
     ap cfd
+    ap cfdpoints
 
     cfd.each {|k,v| v.each {|l,c| cfd[k][l] = c.count}}
+    cfdpoints.each {|k,v| v.each {|l,c| cfd[k][l] = c.inject(:+)}}
     # cfd.each {|k,v| v.each {|l,c| cfd[k][l] = c.count}}
     # c[i]["pointvalue"]
 
@@ -138,8 +145,13 @@ class ProgressChartsAnalyzer
     puts "CFD after comprehension"
     puts "============="
     ap cfd
-    cfd
 
+    puts "CFD points after comprehension"
+    puts "==============="
+    ap cfdpoints
+
+
+    cfd
   end
 
   def self.formatCFD(cfd, lists)
