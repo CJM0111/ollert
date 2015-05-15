@@ -134,11 +134,10 @@ class ProgressChartsAnalyzer
       lpoints = 0
       puts date
       puts lists
-      lists.each do |l, idp|
+      lists.keys.each do |l|
         puts l
         puts l.class
-        puts idp
-        idp.each do |id, p|
+        lists[l].each do |id, p|
           puts id
           puts p
           lpoints += p
