@@ -107,9 +107,7 @@ class ProgressChartsAnalyzer
         cfd[date][matching_list["name"]] << action["data"]["card"]["id"]
         idpoints = Hash.new()
         idpoints[action["data"]["card"]["id"]] = action["data"]["card"]["points"]
-        cfdpoints[date][matching_list["name"]] << idpoints
-        #cfdpoints[date][matching_list["name"][action["data"]["card"]["id"]]] == action["data"]["card"]["points"]
-
+        cfdpoints[date][matching_list["name"]] = idpoints
 
       end
 
@@ -130,7 +128,7 @@ class ProgressChartsAnalyzer
     cfd.each {|k,v| v.each {|l,c| cfd[k][l] = c.count}}
     #cfdpoints.each {|k,v| v.each {|l,c| cfd[k][l] = c.inject(:+)}}
     #cfdpoints.each {|k,v| v.each {|l,c| cfdpoints[k][l] = c.inject{|sum,x| sum + x}}}
-    cfdpoints.each {|k,v| v.each {|l,c| cfdpoints[k][l] = c.inject(0, :+)}}
+    
 
     puts "CFD after comprehension"
     puts "============="
