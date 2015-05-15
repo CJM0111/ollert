@@ -136,6 +136,7 @@ class ProgressChartsAnalyzer
       puts lists
       lists.each do |l, idp|
         puts l
+        puts l.class
         puts idp
         idp.each do |id, p|
           puts id
