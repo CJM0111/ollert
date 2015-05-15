@@ -136,7 +136,7 @@ class ProgressChartsAnalyzer
       cfdpoints[date].keys.each do |l|
         puts l
         puts l.class
-        lists[l].each do |id, p|
+        cfdpoints[date][l].each do |id, p|
           puts id
           puts p
           lpoints += p
