@@ -133,8 +133,8 @@ class ProgressChartsAnalyzer
     cfdpoints.each do |date, list|
       lpoints = 0
       puts date
-      puts list
-      list.each do |l, idp|
+      puts lists
+      lists.each do |l, idp|
         puts l
         puts idp
         idp.each do |id, p|
@@ -142,10 +142,9 @@ class ProgressChartsAnalyzer
           puts p
           lpoints += p
         end
-
+        cfdpoints[date][lists][l] = lpoints
       end
-      cfdpoints[date][list].delete
-      cfdpoints[date][list] = lpoints
+
     end
 
     puts "CFD after comprehension"
