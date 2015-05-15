@@ -137,7 +137,8 @@ class ProgressChartsAnalyzer
     ap cfdpoints
 
     cfd.each {|k,v| v.each {|l,c| cfd[k][l] = c.count}}
-    cfdpoints.each {|k,v| v.each {|l,c| cfd[k][l] = l.inject(:+)}}
+    #cfdpoints.each {|k,v| v.each {|l,c| cfd[k][l] = c.inject(:+)}}
+    cfdpoints.each {|k,v| v.each {|l,c| puts c}}
 
     # cfd.each {|k,v| v.each {|l,c| cfd[k][l] = c.count}}
     # c[i]["pointvalue"]
