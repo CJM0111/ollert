@@ -130,7 +130,7 @@ class ProgressChartsAnalyzer
     #cfdpoints.each {|k,v| v.each {|l,c| cfdpoints[k][l] = c.inject{|sum,x| sum + x}}}
 
 
-    cfdpoints.each do |date, list|
+    cfdpoints.each do |date, lists|
       lpoints = 0
       puts date
       puts lists
