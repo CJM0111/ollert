@@ -130,6 +130,9 @@ class ProgressChartsAnalyzer
 
     end
 
+    ap cfd
+    ap cfdpoints
+
     # What's been done here?
     # cfd holds the IDs of cards before getting squashed.
     # Once squashed, cfd becomes a hash using dates for keys and another hash we'll call V for values
@@ -138,10 +141,6 @@ class ProgressChartsAnalyzer
     # not their IDs.
 
     cfd.each {|k,v| v.each {|l,c| cfd[k][l] = c.count}}
-    #cfdpoints.each {|k,v| v.each {|l,c| cfd[k][l] = c.inject(:+)}}
-    #cfdpoints.each {|k,v| v.each {|l,c| cfdpoints[k][l] = c.inject{|sum,x| sum + x}}}
-
-
     cfdpoints.keys.each do |date|
       lpoints = 0
       cfdpoints[date].keys.each do |l|
