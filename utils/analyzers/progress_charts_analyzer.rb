@@ -151,6 +151,9 @@ class ProgressChartsAnalyzer
       end
     end
 
+    ap cfd
+    ap cfdpoints
+
     cfdpoints
 
   end
