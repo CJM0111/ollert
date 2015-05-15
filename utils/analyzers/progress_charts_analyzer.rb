@@ -83,7 +83,7 @@ class ProgressChartsAnalyzer
             ap cfd[date][matching_list["name"]]
             ap cfdpoints[date][matching_list["name"]]
             cfd[date][matching_list["name"]].delete data["card"]["id"]
-            cfdpoints[date][matching_list["name"]].delete data["card"]["points"]
+            #cfdpoints[date][matching_list["name"]].delete data["card"]["points"]
           end
         elsif action["type"] == "createCard"
           list = data["list"]
@@ -92,7 +92,7 @@ class ProgressChartsAnalyzer
           list = cfd[date].select {|k,v| v.any? {|cid| cid == data["card"]["id"]}}
           unless list.nil? || list.count != 1
             cfd[date][list.keys.first].delete data["card"]["id"]
-            cfdpoints[date][list.keys.first].delete data["card"]["points"]
+            #cfdpoints[date][list.keys.first].delete data["card"]["points"]
           end
           next
         end
