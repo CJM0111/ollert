@@ -91,6 +91,7 @@ class ProgressChartsAnalyzer
           unless list.nil? || list.count != 1
             cfd[date][list.keys.first].delete data["card"]["id"]
             cfdpoints[date][list.keys.first].delete data["card"]["id"]
+            #todo: Deletes aren't 100% yet. Check the assignment at line 90
           end
           next
         end
@@ -100,9 +101,6 @@ class ProgressChartsAnalyzer
         next if cfd[date][matching_list["name"]].include? action["data"]["card"]["id"]
         next if cfdpoints[date][matching_list["name"]].include? action["data"]["card"]["id"]
         cfd[date][matching_list["name"]] << action["data"]["card"]["id"]
-        idpoints = Hash.new()
-        idpoints[action["data"]["card"]["id"]] = action["data"]["card"]["points"]
-        puts cfdpoints[date][matching_list["name"]].class
         cfdpoints[date][matching_list["name"]][action["data"]["card"]["id"]] = action["data"]["card"]["points"]
 
         print "Date: "
@@ -125,7 +123,7 @@ class ProgressChartsAnalyzer
     # cfd holds the IDs of cards before getting squashed.
     # Once squashed, cfd becomes a hash using dates for keys and another hash we'll call V for values
     # V uses list names for keys and the amount of cards in that list as the values
-    # cfdpoints, after squashing, becomes a hash very similar to cfd, but the values of V are the point values of the cards,
+    # cfdpoints, after squashing, becomes a hash very similar to cfd, but the values of V are the point values of the cards
     # not their IDs.
 
     cfd.each {|k,v| v.each {|l,c| cfd[k][l] = c.count}}
