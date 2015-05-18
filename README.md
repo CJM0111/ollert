@@ -1,3 +1,6 @@
+### **New Added Functionality***
+Instead of presenting the burn up/burn down data visualization as a representation of the number of cards, the graphs is a representation of points per list. For example instead of having 3 cards in the Done section represented, the number of points in the section will be represented. So say there are 5 cards and each card requires 2 hours (2 points) this would be 10 instead of 5. This also allows for decimal reresentation of hours as well. The hours or points need to be present in the title, usually the beginning of the title of a card. So say the title is 'Complete data normalization', then it would be '(3) or 3 Complete data normalizaiton'. The integer is parsed using Regex.
+
 ### Ollert
 
 [![Build Status](https://travis-ci.org/sep/ollert.svg?branch=master)](https://travis-ci.org/sep/ollert)
