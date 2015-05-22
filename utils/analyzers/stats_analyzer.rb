@@ -88,7 +88,7 @@ class StatsAnalyzer
       points[card["idList"]] += pointvalue
     end
 
-    least = points.max_by{|k,v| v}
+    least = points.min_by{|k,v| v}
     list = lists.select{|l| l["id"] == least[0]}.first unless least.nil?
 
     if list.nil?
