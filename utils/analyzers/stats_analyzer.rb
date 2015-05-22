@@ -83,7 +83,7 @@ class StatsAnalyzer
       if pointvalue.length == 0
         pointvalue = 0
       else
-        pointvalue = pointvalue[0]
+        pointvalue = pointvalue[0].to_f
       end
       points[card["idList"]] += pointvalue
     end
