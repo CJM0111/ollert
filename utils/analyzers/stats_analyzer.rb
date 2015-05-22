@@ -89,7 +89,7 @@ class StatsAnalyzer
     end
 
     least = points.max_by{|k,v| v}
-    list = lists.select{|l| l["id"] == least[0]}.first unless most.nil?
+    list = lists.select{|l| l["id"] == least[0]}.first unless least.nil?
 
     if list.nil?
       return "", 0
