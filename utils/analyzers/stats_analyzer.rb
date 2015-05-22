@@ -40,8 +40,10 @@ class StatsAnalyzer
   end
 
   def self.analyze_lists(cards, lists)
-    max_name, max = get_list_with_most_cards(cards, lists)
-    min_name, min = get_list_with_least_cards(cards, lists)
+    #max_name, max = get_list_with_most_cards(cards, lists)
+    #min_name, min = get_list_with_least_cards(cards, lists)
+    max_name, max = get_list_with_most_points(cards, lists)
+    min_name, min = get_list_with_least_points(cards, lists)
 
     {
       list_with_most_cards_name: max_name,
@@ -49,6 +51,52 @@ class StatsAnalyzer
       list_with_least_cards_name: min_name,
       list_with_least_cards_count: min
     }
+  end
+
+  def self.get_list_with_most_points(cards,lists)
+    points = Hash.new(0)
+    cards.each do |card|
+      pointvalue = card["name"].scan(/(?:\d*\.)?\d+/)
+      if pointvalue.length == 0
+        pointvalue = 0
+      else
+        pointvalue = pointvalue[0]
+      end
+      points[card["idList"]] += pointvalue
+    end
+
+    most = points.max_by{|k,v| v}
+    list = lists.select{|l| l["id"] == most[0]}.first unless most.nil?
+
+    if list.nil?
+      return "", 0
+    end
+
+    return list["name"], most[1]
+
+  end
+
+  def self.get_list_with_least_points(cards, lists)
+    points = Hash.new(0)
+    cards.each do |card|
+      pointvalue = card["name"].scan(/(?:\d*\.)?\d+/)
+      if pointvalue.length == 0
+        pointvalue = 0
+      else
+        pointvalue = pointvalue[0]
+      end
+      points[card["idList"]] += pointvalue
+    end
+
+    least = points.max_by{|k,v| v}
+    list = lists.select{|l| l["id"] == least[0]}.first unless most.nil?
+
+    if list.nil?
+      return "", 0
+    end
+
+    return list["name"], least[1]
+
   end
 
   def self.get_list_with_most_cards(cards, lists)

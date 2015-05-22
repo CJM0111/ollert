@@ -46,9 +46,6 @@ class ProgressChartsAnalyzer
       h[k] = Hash[open_lists.collect { |list| [list["name"], {}] }]
     end
 
-    puts "Printing card actions, bout to go ham"
-    ap card_actions
-
     isFirst = true
     cad = card_actions.group_by {|ca| ca["date"].to_date}
     return cfd if cad.empty?
@@ -103,21 +100,9 @@ class ProgressChartsAnalyzer
         cfd[date][matching_list["name"]] << action["data"]["card"]["id"]
         cfdpoints[date][matching_list["name"]][action["data"]["card"]["id"]] = action["data"]["card"]["points"]
 
-        print "Date: "
-        puts date
-        print "Action type was: "
-        puts action["type"]
-        print "Card affected: "
-        puts data["card"]["name"]
-        puts "Card point value: "
-        puts data["card"]["points"]
-
       end
 
     end
-
-    ap cfd
-    ap cfdpoints
 
     # What's been done here?
     # cfd holds the IDs of cards before getting squashed.
@@ -136,9 +121,6 @@ class ProgressChartsAnalyzer
         cfdpoints[date][l] = lpoints
       end
     end
-
-    ap cfd
-    ap cfdpoints
 
     cfdpoints
 
