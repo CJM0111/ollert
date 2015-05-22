@@ -4,6 +4,7 @@ var StatsBuilder = (function() {
     $('#card-count').text(stats.card_count);
     $('#avg-members-per-card').text(stats.avg_members_per_card);
     $('#avg-cards-per-member').text(stats.avg_cards_per_member);
+    $('#avg-points-per-card').text(stats.avg_points_per_card);
 
     $('#list-with-most-cards-name').text(stats.list_with_most_cards_name);
     $('#list-with-most-cards-name').attr("title", stats.list_with_most_cards_name);

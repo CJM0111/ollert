@@ -22,7 +22,8 @@ class StatsAnalyzer
       board_members_count: members.count,
       card_count: cards.count,
       avg_members_per_card: get_average_members_per_card(cards),
-      avg_cards_per_member: get_average_cards_per_member(cards, members)
+      avg_cards_per_member: get_average_cards_per_member(cards, members),
+      avg_points_per_card: get_average_points_per_card(cards)
     }
   end
 
@@ -43,7 +44,16 @@ class StatsAnalyzer
   end
 
   def self.get_average_points_per_card(cards)
-
+    points = 0.0
+    count = 0.0 # instead of using .length, don't count empty cards against us
+    cards.each do |card|
+      pointvalue = card["name"].scan(/(?:\d*\.)?\d+/)
+      if pointvalue.length != 0
+        points += pointvalue[0].to_f
+        count += 1
+      end
+    end
+    (points/count).round(2)
   end
 
   def self.analyze_lists(cards, lists)
