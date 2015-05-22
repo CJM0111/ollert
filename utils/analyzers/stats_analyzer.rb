@@ -27,7 +27,7 @@ class StatsAnalyzer
   end
 
   def self.get_average_members_per_card(cards)
-    ap cards.reduce(0)
+    ap cards.reduce(0) {|sum, card| sum += card["idMembers"].count}.to_f / cards.count
     (cards.reduce(0) {|sum, card| sum += card["idMembers"].count}.to_f / cards.count).round(2)
   end
 
