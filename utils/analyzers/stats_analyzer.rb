@@ -1,4 +1,5 @@
 require 'date'
+require 'awesome_print'
 
 class StatsAnalyzer
   def self.analyze(data)
@@ -26,6 +27,7 @@ class StatsAnalyzer
   end
 
   def self.get_average_members_per_card(cards)
+    ap cards.reduce(0)
     (cards.reduce(0) {|sum, card| sum += card["idMembers"].count}.to_f / cards.count).round(2)
   end
 
@@ -37,6 +39,10 @@ class StatsAnalyzer
       end
     end
     (members_per_card.values.reduce(:+).to_f / members.count).round(2)
+  end
+
+  def self.get_average_points_per_card(cards)
+
   end
 
   def self.analyze_lists(cards, lists)
