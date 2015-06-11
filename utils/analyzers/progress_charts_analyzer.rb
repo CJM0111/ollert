@@ -62,7 +62,7 @@ class ProgressChartsAnalyzer
       next if cad[date].nil?
       cad[date].sort_by {|c| c["date"].to_datetime}.each do |action|
         data = action["data"]
-        ap data
+        ap action
         pointvalue = data["card"]["name"].scan(/(?:\d*\.)?\d+/)
         if pointvalue.length == 0
           data["card"]["points"] = 0.0
