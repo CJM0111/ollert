@@ -80,7 +80,7 @@ class ProgressChartsAnalyzer
             puts data["card"]["id"]
 
           end
-        elsif action["type"] == "createCard"
+        elsif action["type"] == "createCard" || action["type"] == "moveCardToBoard"
           list = data["list"]
         else
           # card was closed
